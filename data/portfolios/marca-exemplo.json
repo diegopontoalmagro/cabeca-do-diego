@@ -1,0 +1,8 @@
+{
+  "company": { "name": "Marca Exemplo", "city": "Erechim", "state": "RS", "country": "Brasil" },
+  "products": [
+    { "name": "Tradicional", "category": "chimarrao" },
+    { "name": "Pura Folha", "category": "chimarrao" },
+    { "name": "Menta e Limão", "category": "terere" }
+  ]
+}
