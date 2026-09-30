@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>cabeça do Diego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ECEFE4;--card:#F8F9F3;--erva:#2D4A2A;--erva-l:#DCE5D3;--cuia:#8B5A2B;--cuia-l:#F0E2D0;--gelo:#2F7F86;--gelo-l:#D6ECEE;--ink:#1F261C;--mute:rgba(31,38,28,.62);--line:rgba(45,74,42,.22);--on:#F8F9F3;--graos:#5B3A29;--moido:#A8703A;--star:#D9971E;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141A12;--card:#1E261B;--erva:#9CC48F;--erva-l:#27341F;--cuia:#D9A465;--cuia-l:#3A2C1B;--gelo:#6CC0C7;--gelo-l:#1B3436;--ink:#E8EDE0;--mute:rgba(232,237,224,.62);--line:rgba(156,196,143,.25);--on:#141A12;--graos:#D0A283;--moido:#E0B27A}}
+:root[data-theme="dark"]{--paper:#141A12;--card:#1E261B;--erva:#9CC48F;--erva-l:#27341F;--cuia:#D9A465;--cuia-l:#3A2C1B;--gelo:#6CC0C7;--gelo-l:#1B3436;--ink:#E8EDE0;--mute:rgba(232,237,224,.62);--line:rgba(156,196,143,.25);--on:#141A12;--graos:#D0A283;--moido:#E0B27A}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0;line-height:1.1}
+:focus-visible{outline:2px solid var(--erva);outline-offset:2px}
+.app{max-width:1200px;margin:0 auto;display:flex;min-height:100vh}
+aside{width:250px;flex:none;padding:32px 12px;border-right:1px solid var(--line);position:sticky;top:0;align-self:flex-start;height:100vh}
+.brand{font:700 26px/1 'Bricolage Grotesque',sans-serif;color:var(--erva);padding:0 12px 24px;display:block;text-decoration:none}
+.sync{display:block;font-size:12px;color:var(--mute);padding:0 12px 10px}
+nav a,nav .soon{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;text-decoration:none;color:inherit;font-weight:500;margin-bottom:2px;cursor:pointer;background:none;border:0;width:100%;text-align:left}
+nav a:hover{background:var(--erva-l)}
+nav a.on{background:var(--erva);color:var(--on)}
+nav .soon{color:var(--mute);cursor:default}
+nav .soon small{background:var(--line);border-radius:4px;padding:1px 6px;font-size:12px}
+nav ul{list-style:none;margin:0 0 6px;padding:0 0 0 12px}
+nav ul a{font-size:14px;padding:6px 12px}
+main{flex:1;min-width:0;padding:40px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:24px}
+.head h1{font-size:clamp(32px,5vw,48px);color:var(--erva)}
+.tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.tab{background:var(--card);border:0;border-radius:8px;padding:10px 20px;font-size:18px;font-weight:600;cursor:pointer;font-family:inherit}
+.tab[aria-selected=true].chimarrao{background:var(--cuia);color:var(--on)}
+.tab[aria-selected=true].terere{background:var(--gelo);color:var(--on)}
+.tab[aria-selected=true].graos{background:var(--graos);color:var(--on)}
+.tab[aria-selected=true].moido{background:var(--moido);color:var(--on)}
+.tab.pl[aria-selected=true]{background:var(--erva);color:var(--on)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.card{background:var(--card);border-radius:8px;overflow:hidden;border-top:6px solid var(--erva)}
+.card.chimarrao{border-color:var(--cuia)}.card.terere{border-color:var(--gelo)}
+.card.graos{border-color:var(--graos)}.card.moido{border-color:var(--moido)}
+.ph{aspect-ratio:4/5;background:var(--erva-l);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:14px}
+.pcard .ph{aspect-ratio:4/3}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.rt{display:flex;align-items:center;gap:8px;padding:10px 12px 0;font-weight:600}
+.rt .none{font-weight:400;font-size:14px;color:var(--mute)}
+.cb{padding:12px}.cb .co{font-size:14px;color:var(--mute)}.cb h3{font-size:18px}.cb .or{font-size:14px;color:var(--mute);margin-top:4px}
+.ds{font-size:14px;margin-top:6px;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.chip{display:inline-block;background:var(--erva-l);color:var(--erva);border-radius:99px;padding:1px 10px;font-size:12px;font-weight:600;margin-bottom:8px}
+.mapsbtn{display:inline-block;margin-top:12px;background:var(--erva);color:var(--on);text-decoration:none;border-radius:8px;padding:8px 14px;font-weight:600;font-size:14px}
+.mapsbtn:hover{opacity:.9}
+.empty{border:1px dashed var(--line);border-radius:8px;padding:40px;text-align:center}
+.link{color:var(--erva)}
+.note{margin-top:32px;font-size:13px;color:var(--mute)}
+.stars{display:inline-flex;position:relative;vertical-align:middle}
+.stars .bg,.stars .fg{display:flex}
+.stars .fg{position:absolute;left:0;top:0;height:100%;overflow:hidden}
+.stars svg{flex:none;display:block}
+.stars .bg path{fill:var(--line)}
+.stars .fg path{fill:var(--star)}
+@media(max-width:760px){.app{display:block}aside{width:auto;height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);padding:16px 8px 8px}.brand{padding-bottom:4px}.sync{padding-bottom:8px}nav{display:flex;overflow-x:auto;gap:4px}nav>div{flex:none}nav ul{display:none}main{padding:20px 16px 48px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <a class="brand" href="#">cabeça<br>do Diego</a>
+    <span class="sync" id="syncst">carregando…</span>
+    <nav id="nav" aria-label="Seções"></nav>
+  </aside>
+  <main id="main"><p>Carregando catálogo…</p></main>
+</div>
+
+<script>
+/*
+  Site só de leitura: os dados vêm do arquivo data/db.json deste mesmo
+  repositório. Para adicionar, editar ou remover algo, peça no chat do
+  Claude — as mudanças são enviadas para o GitHub e aparecem aqui em
+  poucos segundos (a página se atualiza sozinha).
+*/
+const SECTIONS=[
+  {slug:'erva-mate',name:'Erva-mate',active:true,cats:[{slug:'chimarrao',name:'Chimarrão'},{slug:'terere',name:'Tererê'}]},
+  {slug:'cafe',name:'Café',active:true,cats:[{slug:'graos',name:'Grãos'},{slug:'moido',name:'Moído'}]},
+  {slug:'lugares',name:'Lugares para Visitar',active:true},
+  {slug:'acessorios',name:'Acessórios',active:false}
+];
+const STAR_PATH="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z";
+let db={companies:[],products:[],places:[],placeCats:[]};
+let curSec='erva-mate',cat='chimarrao',pcat='';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=v=>String(v).replace('.',',');
+function starsHTML(sz,v){
+  const star=`<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" aria-hidden="true"><path d="${STAR_PATH}"/></svg>`;
+  const five=star.repeat(5);
+  return `<span class="stars" role="img" aria-label="Nota ${fmt(v)} de 5"><span class="bg">${five}</span><span class="fg" style="width:${v/5*100}%">${five}</span></span>`;
+}
+function isMaps(u){
+  try{
+    let v=String(u||'').trim();if(!v)return false;
+    if(/^http:\/\//i.test(v))v=v.replace(/^http:/i,'https:');else if(!/^https:\/\//i.test(v))v='https://'+v;
+    const x=new URL(v);if(x.protocol!=='https:')return false;
+    const h=x.hostname.toLowerCase(),pa=x.pathname;
+    if(h==='maps.app.goo.gl')return pa.length>1;
+    if(h==='goo.gl')return pa.startsWith('/maps');
+    const G='google\\.(com(\\.[a-z]{2})?|co\\.[a-z]{2}|[a-z]{2})';
+    if(new RegExp('^maps\\.'+G+'$').test(h))return true;
+    if(new RegExp('^(www\\.)?'+G+'$').test(h))return pa.startsWith('/maps');
+    return false;
+  }catch(e){return false}
+}
+function fixUrl(u){u=String(u||'').trim();if(/^http:\/\//i.test(u))return u.replace(/^http:/i,'https:');return /^https:\/\//i.test(u)?u:'https://'+u}
+
+function renderNav(){
+  $('nav').innerHTML=SECTIONS.map(s=>{
+    if(!s.active)return `<div class="soon">${esc(s.name)} <small>em breve</small></div>`;
+    const cur=s.slug===curSec;let subs='';
+    if(cur&&s.cats)subs=s.cats.map(c=>`<li><a href="#" data-cat="${c.slug}" style="${c.slug===cat?'background:var(--erva-l);color:var(--erva);font-weight:600':''}">${esc(c.name)}</a></li>`).join('');
+    if(cur&&s.slug==='lugares'){
+      const chips=[{slug:'',name:'Todos'},...db.placeCats];
+      subs=chips.map(c=>`<li><a href="#" data-pcat="${c.slug}" style="${c.slug===pcat?'background:var(--erva-l);color:var(--erva);font-weight:600':''}">${esc(c.name)}</a></li>`).join('');
+    }
+    return `<div><a href="#" data-sec="${s.slug}" class="${cur?'on':''}">${esc(s.name)}</a><ul>${subs}</ul></div>`;
+  }).join('');
+  $('nav').querySelectorAll('[data-sec]').forEach(a=>a.onclick=e=>{e.preventDefault();const s=SECTIONS.find(x=>x.slug===a.dataset.sec);curSec=s.slug;if(s.cats)cat=s.cats[0].slug;render()});
+  $('nav').querySelectorAll('[data-cat]').forEach(a=>a.onclick=e=>{e.preventDefault();cat=a.dataset.cat;render()});
+  $('nav').querySelectorAll('[data-pcat]').forEach(a=>a.onclick=e=>{e.preventDefault();pcat=a.dataset.pcat;render()});
+}
+function render(){curSec==='lugares'?renderPlaces():renderCatalog()}
+function renderCatalog(){
+  renderNav();
+  const sec=SECTIONS.find(s=>s.slug===curSec);
+  const list=db.products.filter(p=>p.cat===cat).sort((a,b)=>(b.at||0)-(a.at||0));
+  const cname=sec.cats.find(c=>c.slug===cat).name;
+  $('main').innerHTML=`<div class="head"><h1>${esc(sec.name)}</h1></div>
+  <div class="tabs" role="tablist">${sec.cats.map(c=>`<button class="tab ${c.slug}" role="tab" aria-selected="${c.slug===cat}" data-cat="${c.slug}">${esc(c.name)}</button>`).join('')}</div>
+  ${list.length?`<div class="grid">${list.map(card).join('')}</div>`:`<div class="empty"><b>${curSec==='cafe'?`Nenhum café cadastrado em ${esc(cname)}`:`Nenhuma erva de ${esc(cname)} cadastrada`}</b></div>`}
+  <p class="note">Para cadastrar ou mudar algo, peça no chat do Claude — a página se atualiza sozinha.</p>`;
+  $('main').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cat=t.dataset.cat;render()});
+}
+function card(p){
+  const c=db.companies.find(x=>x.id===p.companyId)||{name:'?'};
+  const o=[p.city,p.state,p.country].filter(Boolean).join(', ');
+  const rt=p.rating?`${starsHTML(20,p.rating)}<span>${fmt(p.rating)}</span>`:'<span class="none">sem nota</span>';
+  return `<article class="card ${p.cat}"><div class="ph">${p.photo?`<img src="${esc(p.photo)}" alt="${esc(c.name+' '+p.name)}" loading="lazy">`:'sem foto'}</div>
+  <div class="rt">${rt}</div>
+  <div class="cb"><div class="co">${esc(c.name)}</div><h3>${esc(p.name)}</h3>${p.size?`<div class="or"><b>${esc(p.size)}</b></div>`:''}<div class="or">${esc(o)||'Origem não informada'}</div>${p.desc?`<div class="ds">${esc(p.desc)}</div>`:''}</div></article>`;
+}
+function renderPlaces(){
+  renderNav();
+  const list=db.places.filter(p=>!pcat||p.cat===pcat).sort((a,b)=>(b.at||0)-(a.at||0));
+  const chips=[{slug:'',name:'Todos'},...db.placeCats];
+  const cn=chips.find(c=>c.slug===pcat);
+  $('main').innerHTML=`<div class="head"><h1>Lugares para Visitar</h1></div>
+  <div class="tabs" role="tablist">${chips.map(c=>`<button class="tab pl" role="tab" aria-selected="${c.slug===pcat}" data-pc="${c.slug}">${esc(c.name)}</button>`).join('')}</div>
+  ${list.length?`<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">${list.map(placeCard).join('')}</div>`:`<div class="empty"><b>Nenhum local cadastrado${pcat?' em '+esc(cn.name):''}</b></div>`}
+  <p class="note">Para cadastrar ou mudar algo, peça no chat do Claude — a página se atualiza sozinha.</p>`;
+  $('main').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{pcat=t.dataset.pc;render()});
+}
+function placeCard(p){
+  const cname=(db.placeCats.find(c=>c.slug===p.cat)||{name:'?'}).name;
+  const where=[p.city,p.state,p.country].filter(Boolean).join(', ');
+  const link=isMaps(p.url)?`<a class="mapsbtn" href="${esc(fixUrl(p.url))}" target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a>`:'<span class="or">Link do mapa inválido</span>';
+  return `<article class="card pcard"><div class="ph">${p.photo?`<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">`:'sem foto'}</div>
+  <div class="cb"><span class="chip">${esc(cname)}</span><h3>${esc(p.name)}</h3>${where?`<div class="or">${esc(where)}</div>`:''}${p.notes?`<div class="ds">${esc(p.notes)}</div>`:''}${link}</div></article>`;
+}
+
+async function loadData(silent){
+  try{
+    const r=await fetch('data/db.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('sem dados ainda');
+    const d=await r.json();
+    db={companies:d.companies||[],products:d.products||[],places:d.places||[],placeCats:d.placeCats&&d.placeCats.length?d.placeCats:[{slug:'restaurantes',name:'Restaurantes'},{slug:'parques',name:'Parques'},{slug:'museus',name:'Museus'},{slug:'mirantes',name:'Mirantes'}]};
+    $('syncst').textContent='🔄 catálogo publicado — atualiza sozinho';
+    render();
+  }catch(e){
+    if(!silent){$('syncst').textContent='📭 catálogo ainda vazio';db={companies:[],products:[],places:[],placeCats:[{slug:'restaurantes',name:'Restaurantes'},{slug:'parques',name:'Parques'},{slug:'museus',name:'Museus'},{slug:'mirantes',name:'Mirantes'}]};render();}
+  }
+}
+loadData(false);
+setInterval(()=>loadData(true),20000);
+</script>
+</body>
+</html>
