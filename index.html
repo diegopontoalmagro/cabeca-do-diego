@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#ECEFE4;--card:#F8F9F3;--erva:#2D4A2A;--erva-l:#DCE5D3;--cuia:#8B5A2B;--cuia-l:#F0E2D0;--gelo:#2F7F86;--gelo-l:#D6ECEE;--ink:#1F261C;--mute:rgba(31,38,28,.62);--line:rgba(45,74,42,.22);--on:#F8F9F3;--graos:#5B3A29;--moido:#A8703A;--star:#D9971E;
+:root{--paper:#ECEFE4;--card:#F8F9F3;--erva:#2D4A2A;--erva-l:#DCE5D3;--cuia:#8B5A2B;--cuia-l:#F0E2D0;--gelo:#2F7F86;--gelo-l:#D6ECEE;--ink:#1F261C;--mute:rgba(31,38,28,.62);--line:rgba(45,74,42,.22);--on:#F8F9F3;--graos:#5B3A29;--moido:#A8703A;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141A12;--card:#1E261B;--erva:#9CC48F;--erva-l:#27341F;--cuia:#D9A465;--cuia-l:#3A2C1B;--gelo:#6CC0C7;--gelo-l:#1B3436;--ink:#E8EDE0;--mute:rgba(232,237,224,.62);--line:rgba(156,196,143,.25);--on:#141A12;--graos:#D0A283;--moido:#E0B27A}}
 :root[data-theme="dark"]{--paper:#141A12;--card:#1E261B;--erva:#9CC48F;--erva-l:#27341F;--cuia:#D9A465;--cuia-l:#3A2C1B;--gelo:#6CC0C7;--gelo-l:#1B3436;--ink:#E8EDE0;--mute:rgba(232,237,224,.62);--line:rgba(156,196,143,.25);--on:#141A12;--graos:#D0A283;--moido:#E0B27A}
@@ -16,11 +16,11 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Figtree,system-ui,sans-serif}
 h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0;line-height:1.1}
+button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--erva);outline-offset:2px}
 .app{max-width:1200px;margin:0 auto;display:flex;min-height:100vh}
 aside{width:250px;flex:none;padding:32px 12px;border-right:1px solid var(--line);position:sticky;top:0;align-self:flex-start;height:100vh}
-.brand{font:700 26px/1 'Bricolage Grotesque',sans-serif;color:var(--erva);padding:0 12px 24px;display:block;text-decoration:none}
-.sync{display:block;font-size:12px;color:var(--mute);padding:0 12px 10px}
+.brand{font:700 26px/1 'Bricolage Grotesque',sans-serif;color:var(--erva);padding:0 12px 24px;display:block}
 nav a,nav .soon{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;text-decoration:none;color:inherit;font-weight:500;margin-bottom:2px;cursor:pointer;background:none;border:0;width:100%;text-align:left}
 nav a:hover{background:var(--erva-l)}
 nav a.on{background:var(--erva);color:var(--on)}
@@ -31,76 +31,439 @@ nav ul a{font-size:14px;padding:6px 12px}
 main{flex:1;min-width:0;padding:40px}
 .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:24px}
 .head h1{font-size:clamp(32px,5vw,48px);color:var(--erva)}
-.tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
-.tab{background:var(--card);border:0;border-radius:8px;padding:10px 20px;font-size:18px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn{background:var(--erva);color:var(--on);border:0;border-radius:8px;padding:10px 18px;font-weight:600;cursor:pointer}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.tabs{display:flex;gap:8px;margin-bottom:28px}
+.tab{background:var(--card);border:0;border-radius:8px;padding:10px 20px;font-size:18px;font-weight:600;cursor:pointer}
 .tab[aria-selected=true].chimarrao{background:var(--cuia);color:var(--on)}
 .tab[aria-selected=true].terere{background:var(--gelo);color:var(--on)}
-.tab[aria-selected=true].graos{background:var(--graos);color:var(--on)}
-.tab[aria-selected=true].moido{background:var(--moido);color:var(--on)}
-.tab.pl[aria-selected=true]{background:var(--erva);color:var(--on)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
 .card{background:var(--card);border-radius:8px;overflow:hidden;border-top:6px solid var(--erva)}
 .card.chimarrao{border-color:var(--cuia)}.card.terere{border-color:var(--gelo)}
-.card.graos{border-color:var(--graos)}.card.moido{border-color:var(--moido)}
 .ph{aspect-ratio:4/5;background:var(--erva-l);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:14px}
-.pcard .ph{aspect-ratio:4/3}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.rt{display:flex;align-items:center;gap:8px;padding:10px 12px 0;font-weight:600}
-.rt .none{font-weight:400;font-size:14px;color:var(--mute)}
 .cb{padding:12px}.cb .co{font-size:14px;color:var(--mute)}.cb h3{font-size:18px}.cb .or{font-size:14px;color:var(--mute);margin-top:4px}
-.ds{font-size:14px;margin-top:6px;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.chip{display:inline-block;background:var(--erva-l);color:var(--erva);border-radius:99px;padding:1px 10px;font-size:12px;font-weight:600;margin-bottom:8px}
-.mapsbtn{display:inline-block;margin-top:12px;background:var(--erva);color:var(--on);text-decoration:none;border-radius:8px;padding:8px 14px;font-weight:600;font-size:14px}
-.mapsbtn:hover{opacity:.9}
+.del{float:right;background:none;border:0;color:var(--mute);cursor:pointer;font-size:13px;padding:0}
 .empty{border:1px dashed var(--line);border-radius:8px;padding:40px;text-align:center}
-.link{color:var(--erva)}
-.note{margin-top:32px;font-size:13px;color:var(--mute)}
-.stars{display:inline-flex;position:relative;vertical-align:middle}
+dialog{border:0;border-radius:12px;background:var(--paper);color:var(--ink);width:min(560px,94vw);padding:24px;max-height:92vh;overflow-y:auto}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog h2{font-size:26px;color:var(--erva);margin-bottom:16px}
+label,legend{display:block;font-size:14px;font-weight:500;margin-bottom:4px}
+fieldset{border:0;padding:0;margin:0 0 16px}
+input[type=text],input[type=password]{width:100%;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:9px 12px}
+#gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+#gate .box{max-width:380px;width:100%;background:var(--card);border-radius:12px;padding:28px;box-shadow:0 1px 0 rgba(45,74,42,.12)}
+#gate h1{font-size:28px;color:var(--erva);margin-bottom:4px}
+#gate .sub{color:var(--mute);font-size:14px;margin:0 0 20px}
+#gate .hint{font-size:13px;color:var(--mute);margin:16px 0 12px;padding-top:12px;border-top:1px solid var(--line)}
+.topbar{display:flex;gap:14px;align-items:center;padding:0 12px 8px;flex-wrap:wrap}
+.row{margin-bottom:16px;position:relative}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.sug{position:absolute;z-index:5;left:0;right:0;top:100%;margin:4px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:8px;max-height:220px;overflow:auto;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.sug button{display:block;width:100%;text-align:left;background:none;border:0;padding:8px 12px;cursor:pointer}
+.sug button:hover{background:var(--erva-l)}.sug small{display:block;color:var(--mute)}.sug .new{padding:8px 12px;font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
+.port{background:var(--erva-l);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:16px}
+.port span{display:inline-block;background:var(--card);border-radius:99px;padding:1px 10px;margin:4px 6px 0 0}
+.seg{display:flex;gap:8px}.seg button{border:0;border-radius:8px;padding:8px 20px;font-weight:600;background:var(--card);cursor:pointer}
+.seg .chimarrao[aria-pressed=true]{background:var(--cuia);color:var(--on)}.seg .terere[aria-pressed=true]{background:var(--gelo);color:var(--on)}
+.msg{font-size:14px;margin:12px 0 0}.err{color:#b3261e}.warn{color:var(--cuia);font-size:14px;margin-top:4px}
+.acts{display:flex;gap:12px;align-items:center}
+.link{background:none;border:0;color:var(--erva);text-decoration:underline;cursor:pointer}
+:root{--star:#D9971E}
+.stars{display:inline-flex;position:relative;touch-action:pan-y;cursor:pointer;user-select:none;vertical-align:middle}
 .stars .bg,.stars .fg{display:flex}
-.stars .fg{position:absolute;left:0;top:0;height:100%;overflow:hidden}
+.stars .fg{position:absolute;left:0;top:0;height:100%;overflow:hidden;pointer-events:none}
 .stars svg{flex:none;display:block}
 .stars .bg path{fill:var(--line)}
 .stars .fg path{fill:var(--star)}
-@media(max-width:760px){.app{display:block}aside{width:auto;height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);padding:16px 8px 8px}.brand{padding-bottom:4px}.sync{padding-bottom:8px}nav{display:flex;overflow-x:auto;gap:4px}nav>div{flex:none}nav ul{display:none}main{padding:20px 16px 48px}}
+.rate-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.rv{font:700 22px 'Bricolage Grotesque',sans-serif;min-width:70px}
+.cb .rt{display:flex;align-items:center;gap:8px;margin:6px 0 0;font-weight:600;font-size:14px}
+.cb .ds{font-size:14px;margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+textarea{width:100%;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:9px 12px;resize:vertical;min-height:84px;font:inherit;color:inherit}
+.rt{display:flex;align-items:center;gap:8px;padding:10px 12px 0;font-weight:600}
+.rt .none{font-weight:400;font-size:14px;color:var(--mute)}
+.ca{display:flex;gap:14px;margin-top:10px}
+.ca button{background:none;border:0;color:var(--mute);cursor:pointer;padding:0;font-size:13px;text-decoration:underline}
+select{width:100%;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:9px 12px;font:inherit;color:inherit}
+.tab.pl[aria-selected=true]{background:var(--erva);color:var(--on)}
+.chip{display:inline-block;background:var(--erva-l);color:var(--erva);border-radius:99px;padding:1px 10px;font-size:12px;font-weight:600;margin-bottom:8px}
+.pcard{border-top-color:var(--erva)}
+.pcard .ph{aspect-ratio:4/3}
+.pcard .ds{-webkit-line-clamp:4;white-space:pre-line}
+.mapsbtn{display:inline-block;margin-top:12px;background:var(--erva);color:var(--on);text-decoration:none;border-radius:8px;padding:8px 14px;font-weight:600;font-size:14px}
+.mapsbtn:hover{opacity:.9}
+.tab[aria-selected=true].graos{background:var(--graos);color:var(--on)}
+.tab[aria-selected=true].moido{background:var(--moido);color:var(--on)}
+.card.graos{border-color:var(--graos)}.card.moido{border-color:var(--moido)}
+.seg .graos[aria-pressed=true]{background:var(--graos);color:var(--on)}
+.seg .moido[aria-pressed=true]{background:var(--moido);color:var(--on)}
+.note{margin-top:32px;font-size:13px;color:var(--mute)}
+.sync{display:block;font-size:12px;color:var(--mute);padding:0 12px 10px}
+@media(max-width:760px){.app{display:block}aside{width:auto;height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);padding:16px 8px 8px}.brand{padding-bottom:10px}nav{display:flex;overflow-x:auto;gap:4px}nav>div{flex:none}nav ul{display:none}main{padding:20px 16px 48px}.g3{grid-template-columns:1fr}dialog{width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0;padding:16px}}
 </style>
 </head>
 <body>
-<div class="app">
-  <aside>
-    <a class="brand" href="#">cabeça<br>do Diego</a>
-    <span class="sync" id="syncst">carregando…</span>
-    <nav id="nav" aria-label="Seções"></nav>
-  </aside>
-  <main id="main"><p>Carregando catálogo…</p></main>
+<div id="gate">
+  <form class="box" id="gateForm" autocomplete="off">
+    <h1>cabeça do Diego</h1>
+    <p class="sub">Entrar</p>
+    <div class="row"><label for="guser">Usuário</label><input type="text" id="guser" autocomplete="username" required></div>
+    <div class="row"><label for="gpass">Senha</label><input type="password" id="gpass" autocomplete="current-password" required></div>
+    <div id="gistSetup" hidden>
+      <p class="hint">Primeiro acesso neste navegador — informe os dados do GitHub para carregar os dados:</p>
+      <div class="row"><label for="gtoken">Personal Access Token (escopo "gist")</label><input type="password" id="gtoken" placeholder="ghp_..." autocomplete="off"></div>
+      <div class="row"><label for="ggist">ID de um Gist existente (deixe vazio para criar um novo)</label><input type="text" id="ggist" placeholder="opcional" autocomplete="off"></div>
+    </div>
+    <button class="btn" id="gateBtn" type="submit" style="width:100%;margin-top:8px">Entrar</button>
+    <p class="msg err" id="gateMsg" role="alert"></p>
+  </form>
+</div>
+<div class="app" style="display:none">
+  <aside><a class="brand" href="#" id="brand">cabeça<br>do Diego</a>
+    <div class="topbar"><span id="syncst" class="sync" style="padding:0"></span></div>
+    <div class="topbar" style="margin-bottom:10px"><button type="button" class="link" id="logout" style="font-size:12px">sair</button><button type="button" class="link" id="switchAcct" style="font-size:12px">trocar conta</button></div>
+    <nav id="nav" aria-label="Seções"></nav></aside>
+  <main id="main"></main>
 </div>
 
+<dialog id="dlg">
+  <h2 id="dt">Cadastrar erva</h2>
+  <form id="f" autocomplete="off">
+    <div class="row">
+      <label for="emp" id="lemp">Empresa / fabricante</label>
+      <input type="text" id="emp" required>
+      <ul class="sug" id="sug" hidden></ul>
+    </div>
+    <div class="port" id="port" hidden></div>
+    <div class="row">
+      <label for="nome" id="lnome">Nome da erva</label>
+      <input type="text" id="nome" required placeholder="Tradicional, Pura Folha, Menta e Limão">
+      <div class="warn" id="dup" hidden>Esse item já está no portfólio desta empresa.</div>
+    </div>
+    <fieldset><legend>Categoria</legend><div class="seg" id="seg"></div></fieldset>
+    <div class="row" id="rsize" hidden><label for="tam">Tamanho da embalagem</label><input type="text" id="tam" list="tams" placeholder="Ex.: 250 g, 500 g, 1 kg"><datalist id="tams"><option value="100 g"><option value="250 g"><option value="500 g"><option value="1 kg"><option value="2 kg"><option value="5 kg"></datalist></div>
+    <fieldset><legend>Origem</legend>
+      <div class="g3"><input type="text" id="cid" placeholder="Cidade" aria-label="Cidade"><input type="text" id="est" placeholder="Estado" aria-label="Estado"><input type="text" id="pais" placeholder="País" aria-label="País" value="Brasil"></div>
+    </fieldset>
+    <div class="row"><label id="rlab">Nota (arraste sobre as estrelas)</label>
+      <div class="rate-row"><div class="stars" id="stars" role="slider" tabindex="0" aria-labelledby="rlab" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" aria-valuetext="Sem nota"></div><span class="rv" id="rv">Sem nota</span><button type="button" class="link" id="rclear">Limpar</button></div></div>
+    <div class="row"><label for="desc">Descrição</label><textarea id="desc" placeholder="Sabor, moagem, corte, o que achou..."></textarea></div>
+    <div class="row"><label for="foto">Foto</label><input type="file" id="foto" accept="image/*"></div>
+    <div class="acts"><button class="btn" id="save">Salvar erva</button><button type="button" class="link" id="close">Fechar</button></div>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+</dialog>
+
+<dialog id="dlgP">
+  <h2>Cadastrar local</h2>
+  <form id="pf" autocomplete="off" novalidate>
+    <div class="row"><label for="pnome">Nome do local</label><input type="text" id="pnome" required></div>
+    <div class="row"><label for="psub">Subdivisão</label><select id="psub"></select>
+      <input type="text" id="pnew" placeholder="Ex.: Cachoeiras, Cafés, Trilhas" aria-label="Nome da nova subdivisão" hidden style="margin-top:8px"></div>
+    <div class="row"><label for="purl">Link do Google Maps</label><input type="text" inputmode="url" id="purl" placeholder="https://maps.app.goo.gl/...">
+      <div class="warn err" id="purlerr" role="alert" hidden>Cole um link do Google Maps, como https://maps.app.goo.gl/... ou https://www.google.com/maps/...</div></div>
+    <fieldset><legend>Cidade, estado e país</legend>
+      <div class="g3"><div class="row" style="margin:0"><input type="text" id="pcid" placeholder="Cidade" aria-label="Cidade"><ul class="sug" id="pcsug" hidden></ul></div><input type="text" id="pest" placeholder="Estado" aria-label="Estado"><input type="text" id="ppais" placeholder="País" aria-label="País" value="Brasil"></div>
+    </fieldset>
+    <div class="row"><label for="pnotes">Anotações e dicas</label><textarea id="pnotes" placeholder="Melhor horário, o que pedir, como chegar..."></textarea></div>
+    <div class="row"><label for="pfoto">Foto do local</label><input type="file" id="pfoto" accept="image/*"></div>
+    <div class="acts"><button class="btn" id="psave">Salvar local</button><button type="button" class="link" id="pclose">Fechar</button></div>
+    <p class="msg" id="pmsg" role="status"></p>
+  </form>
+</dialog>
+
 <script>
-/*
-  Site só de leitura: os dados vêm do arquivo data/db.json deste mesmo
-  repositório. Para adicionar, editar ou remover algo, peça no chat do
-  Claude — as mudanças são enviadas para o GitHub e aparecem aqui em
-  poucos segundos (a página se atualiza sozinha).
-*/
+// Seções do menu: para criar uma nova aba, adicione um item aqui (active:false = "em breve").
 const SECTIONS=[
   {slug:'erva-mate',name:'Erva-mate',active:true,cats:[{slug:'chimarrao',name:'Chimarrão'},{slug:'terere',name:'Tererê'}]},
   {slug:'cafe',name:'Café',active:true,cats:[{slug:'graos',name:'Grãos'},{slug:'moido',name:'Moído'}]},
   {slug:'lugares',name:'Lugares para Visitar',active:true},
   {slug:'acessorios',name:'Acessórios',active:false}
 ];
-const STAR_PATH="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z";
-let db={companies:[],products:[],places:[],placeCats:[]};
-let curSec='erva-mate',cat='chimarrao',pcat='';
+const DEFAULT_PLACE_CATS=[{slug:'restaurantes',name:'Restaurantes'},{slug:'parques',name:'Parques'},{slug:'museus',name:'Museus'},{slug:'mirantes',name:'Mirantes'}];
+let db={companies:[],products:[],places:[],placeCats:DEFAULT_PLACE_CATS};
+function photoSrc(p){return p.photo||null}
+function compressImage(file){
+  return new Promise((resolve,reject)=>{
+    const img=new Image(),url=URL.createObjectURL(file);
+    img.onload=()=>{
+      const m=800,k=Math.min(1,m/Math.max(img.width,img.height));
+      const cv=document.createElement('canvas');cv.width=img.width*k;cv.height=img.height*k;
+      cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+      const dataUrl=cv.toDataURL('image/jpeg',.78);
+      URL.revokeObjectURL(url);
+      cv.toBlob(blob=>resolve({dataUrl,blob}),'image/jpeg',.78);
+    };
+    img.onerror=()=>reject(new Error('Não foi possível ler a foto.'));
+    img.src=url;
+  });
+}
+function ensureCompany(sec,name,city,state,country){
+  let c=db.companies.find(x=>(x.sec||'erva-mate')===sec&&norm(x.name)===norm(name));
+  if(c)return c;
+  c={id:uid(),sec,name,city,state,country};
+  db.companies.push(c);
+  return c;
+}
+async function saveProduct(data,editingId,blob){
+  const photo=blob?(await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(blob)})):null;
+  if(editingId){const item=db.products.find(p=>p.id===editingId);Object.assign(item,data);if(photo)item.photo=photo}
+  else db.products.push({id:uid(),...data,photo,at:Date.now()});
+  await persist();
+}
+
+/* ===== Login + armazenamento no GitHub Gist =====
+   A "senha" abaixo é só uma cortina para visitantes casuais, não segurança de
+   verdade (qualquer pessoa que abrir o código-fonte da página consegue vê-la).
+   Quem realmente grava dados precisa, além dela, de um Personal Access Token
+   válido — e esse token NUNCA fica salvo no código: cada pessoa cola o seu
+   próprio token, que fica só no armazenamento local do navegador dela. */
+const GATE_USER='diegodonat';
+const GATE_PASS_SHA256='b7d019073af2bed8f033630137b286195e626835cea2c3160085806eb6b0736a';
+async function sha256Hex(s){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+const GIST_FILE='cabeca-do-diego.json';
+const LS_CFG='cdd-gh-config',LS_LOGIN='cdd-logged-in';
+let ghToken=null,ghGistId=null,pollTimer=null;
+function getConfig(){try{return JSON.parse(localStorage.getItem(LS_CFG)||'null')}catch(e){return null}}
+function setConfig(c){localStorage.setItem(LS_CFG,JSON.stringify(c))}
+async function ghGistGet(token,gistId){
+  const r=await fetch('https://api.github.com/gists/'+gistId,{headers:{Authorization:'token '+token},cache:'no-store'});
+  if(!r.ok)throw new Error(r.status===404?'Gist não encontrado. Confira o ID.':'Não consegui abrir esse Gist. Confira o token.');
+  const g=await r.json();
+  const f=g.files&&g.files[GIST_FILE];
+  if(!f)throw new Error('Esse Gist não tem o arquivo esperado ('+GIST_FILE+').');
+  let content=f.content;
+  if(f.truncated){const rr=await fetch(f.raw_url);content=await rr.text()}
+  return JSON.parse(content);
+}
+async function ghGistCreate(token,data){
+  const r=await fetch('https://api.github.com/gists',{method:'POST',headers:{Authorization:'token '+token,'Content-Type':'application/json'},
+    body:JSON.stringify({description:'Dados do site cabeça do Diego',public:false,files:{[GIST_FILE]:{content:JSON.stringify(data)}}})});
+  if(!r.ok)throw new Error('Não consegui criar o Gist. Confira se o token tem a permissão "gist".');
+  return (await r.json()).id;
+}
+async function ghGistSave(token,gistId,data){
+  const r=await fetch('https://api.github.com/gists/'+gistId,{method:'PATCH',headers:{Authorization:'token '+token,'Content-Type':'application/json'},
+    body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(data)}}})});
+  if(!r.ok)throw new Error('Não consegui salvar no Gist.');
+}
+async function persist(){
+  if(!ghToken||!ghGistId)throw new Error('Sem conexão com o Gist.');
+  await ghGistSave(ghToken,ghGistId,db);
+}
+async function loadFromGist(){
+  const d=await ghGistGet(ghToken,ghGistId);
+  db={companies:d.companies||[],products:d.products||[],places:d.places||[],placeCats:(d.placeCats&&d.placeCats.length)?d.placeCats:DEFAULT_PLACE_CATS};
+}
+function showGate(){document.getElementById('gate').style.display='flex';document.querySelector('.app').style.display='none'}
+function showApp(){document.getElementById('gate').style.display='none';document.querySelector('.app').style.display='flex';setSync('🔄 sincronizado com o GitHub')}
+function setSync(t){const el=document.getElementById('syncst');if(el)el.textContent=t}
+function startPolling(){
+  if(pollTimer)clearInterval(pollTimer);
+  pollTimer=setInterval(async()=>{try{await loadFromGist();render()}catch(e){}},20000);
+}
+document.getElementById('logout').onclick=()=>{localStorage.removeItem(LS_LOGIN);if(pollTimer)clearInterval(pollTimer);location.reload()};
+document.getElementById('switchAcct').onclick=()=>{if(confirm('Isso vai pedir o token e o ID do Gist de novo neste navegador. Continuar?')){localStorage.removeItem(LS_LOGIN);localStorage.removeItem(LS_CFG);location.reload()}};
+document.getElementById('gateForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const msg=document.getElementById('gateMsg');msg.textContent='';
+  const user=document.getElementById('guser').value.trim();
+  const pass=document.getElementById('gpass').value;
+  if(user!==GATE_USER||(await sha256Hex(pass))!==GATE_PASS_SHA256){msg.textContent='Usuário ou senha incorretos.';return}
+  const btn=document.getElementById('gateBtn');btn.disabled=true;btn.textContent='Entrando...';
+  try{
+    let cfg=getConfig();
+    if(!cfg){
+      const token=document.getElementById('gtoken').value.trim();
+      const gid=document.getElementById('ggist').value.trim();
+      if(!token){msg.textContent='Cole o Personal Access Token.';return}
+      if(gid){ghToken=token;ghGistId=gid;await loadFromGist()}
+      else{
+        const seed={companies:[],products:[],places:[],placeCats:DEFAULT_PLACE_CATS};
+        ghGistId=await ghGistCreate(token,seed);ghToken=token;db=seed;
+      }
+      setConfig({token:ghToken,gistId:ghGistId});
+    }else{
+      ghToken=cfg.token;ghGistId=cfg.gistId;
+      await loadFromGist();
+    }
+    localStorage.setItem(LS_LOGIN,'1');
+    showApp();render();startPolling();
+  }catch(err){
+    msg.textContent=err.message||'Não foi possível entrar.';
+  }finally{
+    btn.disabled=false;btn.textContent='Entrar';
+  }
+});
+(async function boot(){
+  const cfg=getConfig();
+  document.getElementById('gistSetup').hidden=!!cfg;
+  if(cfg&&localStorage.getItem(LS_LOGIN)==='1'){
+    ghToken=cfg.token;ghGistId=cfg.gistId;
+    try{await loadFromGist();showApp();render();startPolling();return}catch(e){/* token pode ter mudado: pede login de novo */}
+  }
+  showGate();
+})();
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+const uid=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
+const STAR='<svg viewBox="0 0 24 24" width="SZ" height="SZ" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>';
 const fmt=v=>String(v).replace('.',',');
-function starsHTML(sz,v){
-  const star=`<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" aria-hidden="true"><path d="${STAR_PATH}"/></svg>`;
-  const five=star.repeat(5);
-  return `<span class="stars" role="img" aria-label="Nota ${fmt(v)} de 5"><span class="bg">${five}</span><span class="fg" style="width:${v/5*100}%">${five}</span></span>`;
+function starsHTML(sz,v,ro=true){const five=STAR.replace(/SZ/g,sz).repeat(5);return `<span class="stars" style="cursor:default" role="img" aria-label="Nota ${fmt(v)} de 5"><span class="bg">${five}</span><span class="fg" style="width:${v/5*100}%">${five}</span></span>`}
+let rate=0;
+let curSec='erva-mate',pcat='';
+let cat='chimarrao',fcat='chimarrao',picked=null,pendingPhoto=null;
+let sec=SECTIONS[0];const saved={};
+function goSec(slug){saved[curSec]=cat;curSec=slug;const t=SECTIONS.find(x=>x.slug===slug);if(t.cats){sec=t;cat=saved[slug]||t.cats[0].slug}}
+
+function renderNav(){
+  const sub=(attr,slug,name,on)=>`<li><a href="#" ${attr}="${slug}" class="${on?'on':''}" style="${on?'background:var(--erva-l);color:var(--erva);font-weight:600':''}">${esc(name)}</a></li>`;
+  $('nav').innerHTML=SECTIONS.map(s=>{
+    if(!s.active)return `<div class="soon">${esc(s.name)} <small>em breve</small></div>`;
+    const cur=s.slug===curSec;let subs='';
+    if(cur&&s.cats)subs=s.cats.map(c=>sub('data-cat',c.slug,c.name,c.slug===cat)).join('');
+    if(cur&&s.slug==='lugares')subs=sub('data-pcat','','Todos',!pcat)+db.placeCats.map(c=>sub('data-pcat',c.slug,c.name,c.slug===pcat)).join('');
+    return `<div><a href="#" data-sec="${s.slug}" class="${cur?'on':''}">${esc(s.name)}</a><ul>${subs}</ul></div>`}).join('');
+  const nv=$('nav');
+  nv.querySelectorAll('[data-sec]').forEach(a=>a.onclick=e=>{e.preventDefault();goSec(a.dataset.sec);render()});
+  nv.querySelectorAll('[data-cat]').forEach(a=>a.onclick=e=>{e.preventDefault();cat=a.dataset.cat;render()});
+  nv.querySelectorAll('[data-pcat]').forEach(a=>a.onclick=e=>{e.preventDefault();curSec='lugares';pcat=a.dataset.pcat;render()});
 }
+function render(){curSec==='lugares'?renderPlaces():renderErva()}
+function renderErva(){
+  renderNav();
+  const list=db.products.filter(p=>p.cat===cat).sort((a,b)=>b.at-a.at);
+  const cname=sec.cats.find(c=>c.slug===cat).name;
+  $('main').innerHTML=`<div class="head"><h1>${esc(sec.name)}</h1><button class="btn" id="add">Cadastrar ${curSec==='cafe'?'café':'erva'}</button></div>
+  <div class="tabs" role="tablist">${sec.cats.map(c=>`<button class="tab ${c.slug}" role="tab" aria-selected="${c.slug===cat}" data-cat="${c.slug}">${esc(c.name)}</button>`).join('')}</div>
+  ${list.length?`<div class="grid">${list.map(card).join('')}</div>`:`<div class="empty"><p><b>${curSec==='cafe'?`Nenhum café cadastrado em ${esc(cname)}`:`Nenhuma erva de ${esc(cname)} cadastrada`}</b></p><button class="link" id="add2">Cadastrar a primeira</button></div>`}
+  <p class="note">As mudanças ficam salvas no seu Gist do GitHub e aparecem em qualquer navegador onde você entrar com o token.</p>`;
+  $('add').onclick=()=>openForm();const a2=$('add2');if(a2)a2.onclick=()=>openForm();
+  $('main').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openForm(db.products.find(p=>p.id===b.dataset.edit)));
+  $('main').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cat=t.dataset.cat;render()});
+  $('main').querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{
+    if(!confirm('Excluir este item?'))return;
+    const id=b.dataset.del;
+    db.products=db.products.filter(p=>p.id!==id);
+    try{await persist()}catch(e){alert('Não foi possível salvar a exclusão: '+e.message)}
+    render();
+  });
+}
+function card(p){
+  const c=db.companies.find(x=>x.id===p.companyId)||{name:'?'};
+  const o=[p.city,p.state,p.country].filter(Boolean).join(', ');
+  const rt=p.rating?`${starsHTML(22,p.rating)}<span>${fmt(p.rating)}</span>`:'<span class="none">sem nota</span>';
+  return `<article class="card ${p.cat}"><div class="ph">${photoSrc(p)?`<img src="${esc(photoSrc(p))}" alt="${esc(c.name+' '+p.name)}" loading="lazy">`:'sem foto'}</div>
+  <div class="rt">${rt}</div>
+  <div class="cb"><div class="co">${esc(c.name)}</div><h3>${esc(p.name)}</h3>${p.size?`<div class="or"><b>${esc(p.size)}</b></div>`:''}<div class="or">${esc(o)||'Origem não informada'}</div>${p.desc?`<div class="ds">${esc(p.desc)}</div>`:''}
+  <div class="ca"><button data-edit="${p.id}" aria-label="Editar ${esc(p.name)}">editar</button><button data-del="${p.id}" aria-label="Excluir ${esc(p.name)}">excluir</button></div></div></article>`;
+}
+let editing=null;
+function resetForm(){
+  picked=null;pendingPhoto=null;$('foto').value='';
+  ['emp','nome','cid','est','desc','tam'].forEach(i=>$(i).value='');$('pais').value='Brasil';
+  setRate(0);portfolio();$('dup').hidden=true;$('save').disabled=false;$('sug').hidden=true;
+}
+function openForm(p){
+  resetForm();editing=null;$('msg').textContent='';
+  if(p){
+    editing=p;const c=db.companies.find(x=>x.id===p.companyId);
+    picked=c;fcat=p.cat;
+    $('emp').value=c.name;$('nome').value=p.name;$('cid').value=p.city||'';$('est').value=p.state||'';$('pais').value=p.country||'';
+    $('desc').value=p.desc||'';$('tam').value=p.size||'';setRate(p.rating||0);portfolio();
+  }else fcat=cat;
+  const cf=curSec==='cafe';
+  $('dt').textContent=(p?'Editar ':'Cadastrar ')+(cf?'café':'erva');
+  $('save').textContent=p?'Salvar alterações':'Salvar '+(cf?'café':'erva');
+  $('lemp').textContent=cf?'Torrefação / marca':'Empresa / fabricante';
+  $('lnome').textContent=cf?'Nome do café':'Nome da erva';
+  $('nome').placeholder=cf?'Bourbon Amarelo, Blend Especial, Extraforte':'Tradicional, Pura Folha, Menta e Limão';
+  $('rsize').hidden=!cf;
+  drawSeg();$('dlg').showModal();$(p?'nome':'emp').focus();
+}
+function drawSeg(){
+  $('seg').innerHTML=sec.cats.map(c=>`<button type="button" class="${c.slug}" data-c="${c.slug}" aria-pressed="${c.slug===fcat}">${esc(c.name)}</button>`).join('');
+  $('seg').querySelectorAll('button').forEach(b=>b.onclick=()=>{fcat=b.dataset.c;drawSeg();checkDup()});
+}
+function portfolio(){
+  if(!picked){$('port').hidden=true;return}
+  const ps=db.products.filter(p=>p.companyId===picked.id);
+  $('port').hidden=!ps.length;
+  $('port').innerHTML=`<b>Já cadastrados de ${esc(picked.name)}</b><br>`+ps.map(p=>`<span>${esc(p.name)} (${esc(sec.cats.find(c=>c.slug===p.cat).name)})</span>`).join('');
+}
+function checkDup(){
+  const d=picked&&db.products.some(p=>p!==editing&&p.companyId===picked.id&&p.cat===fcat&&norm(p.name)===norm($('nome').value));
+  $('dup').hidden=!d;$('save').disabled=!!d;
+}
+$('emp').addEventListener('input',()=>{
+  picked=null;portfolio();checkDup();
+  const q=norm($('emp').value);const box=$('sug');
+  if(q.length<2){box.hidden=true;return}
+  const res=db.companies.filter(c=>(c.sec||'erva-mate')===curSec&&norm(c.name).includes(q)).slice(0,8);
+  const exact=res.some(c=>norm(c.name)===q);
+  box.innerHTML=res.map(c=>`<li><button type="button" data-id="${c.id}">${esc(c.name)}<small>${esc([c.city,c.state,c.country].filter(Boolean).join(', ')||'Origem não informada')} · ${db.products.filter(p=>p.companyId===c.id).length} produto(s)</small></button></li>`).join('')
+    +(exact?'':`<li class="new">Empresa nova: <b>${esc($('emp').value.trim())}</b> (será criada ao salvar)</li>`);
+  box.hidden=false;
+  box.querySelectorAll('button').forEach(b=>b.onmousedown=e=>{e.preventDefault();pick(db.companies.find(c=>c.id===b.dataset.id))});
+});
+$('emp').addEventListener('blur',()=>setTimeout(()=>$('sug').hidden=true,150));
+function pick(c){
+  picked=c;$('emp').value=c.name;$('cid').value=c.city||'';$('est').value=c.state||'';$('pais').value=c.country||'Brasil';
+  $('sug').hidden=true;portfolio();checkDup();$('nome').focus();
+}
+$('nome').addEventListener('input',checkDup);
+$('close').onclick=()=>{$('dlg').close();render()};
+$('dlg').addEventListener('close',()=>{editing=null;render()});
+$('foto').addEventListener('change',async e=>{
+  const f=e.target.files[0];pendingPhoto=null;if(!f)return;
+  try{pendingPhoto=await compressImage(f)}catch(err){}
+});
+$('f').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const editingId=editing?editing.id:null;
+  $('save').disabled=true;
+  try{
+    const name=$('emp').value.trim();
+    const city=$('cid').value.trim(),state=$('est').value.trim(),country=$('pais').value.trim();
+    const c=picked||await ensureCompany(curSec,name,city,state,country);
+    const pn=$('nome').value.trim();
+    const data={companyId:c.id,cat:fcat,name:pn,city,state,country,rating:rate||null,desc:$('desc').value.trim(),size:$('tam').value.trim()};
+    const blob=pendingPhoto?pendingPhoto.blob:null;
+    await saveProduct(data,editingId,blob);
+    if(editingId){cat=fcat;pendingPhoto=null;$('dlg').close();return}
+    picked=c;pendingPhoto=null;$('foto').value='';$('nome').value='';$('desc').value='';$('tam').value='';setRate(0);
+    $('msg').className='msg';$('msg').textContent=`Salvo: ${pn}. A empresa continua selecionada para a próxima.`;
+    portfolio();checkDup();$('nome').focus();
+  }catch(err){
+    $('msg').className='msg err';$('msg').textContent=err.message||'Não foi possível salvar. Tente de novo.';
+  }finally{
+    $('save').disabled=!$('dup').hidden;
+  }
+});
+const st=$('stars');
+st.innerHTML=`<span class="bg">${STAR.replace(/SZ/g,40).repeat(5)}</span><span class="fg" id="stfg">${STAR.replace(/SZ/g,40).repeat(5)}</span>`;
+function setRate(v){rate=v;$('stfg').style.width=(v/5*100)+'%';$('rv').textContent=v?fmt(v):'Sem nota';st.setAttribute('aria-valuenow',v);st.setAttribute('aria-valuetext',v?fmt(v)+' de 5':'Sem nota')}
+function fromX(e){const r=st.getBoundingClientRect();const x=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));return Math.max(.5,Math.ceil(x*10)/2)}
+let drag=false;
+st.addEventListener('pointerdown',e=>{drag=true;st.setPointerCapture(e.pointerId);setRate(fromX(e))});
+st.addEventListener('pointermove',e=>{if(drag)setRate(fromX(e))});
+st.addEventListener('pointerup',e=>{drag=false;st.releasePointerCapture(e.pointerId)});
+st.addEventListener('pointercancel',()=>drag=false);
+st.addEventListener('keydown',e=>{const k=e.key;let v=rate;
+  if(k==='ArrowRight'||k==='ArrowUp')v=Math.min(5,rate+.5);else if(k==='ArrowLeft'||k==='ArrowDown')v=Math.max(0,rate-.5);else if(k==='Home')v=0;else if(k==='End')v=5;else return;
+  e.preventDefault();setRate(v)});
+$('rclear').onclick=()=>setRate(0);
+$('brand').onclick=e=>{e.preventDefault();render()};
+
+/* ===== Lugares para Visitar ===== */
 function isMaps(u){
   try{
-    let v=String(u||'').trim();if(!v)return false;
+    let v=String(u).trim();if(!v)return false;
     if(/^http:\/\//i.test(v))v=v.replace(/^http:/i,'https:');else if(!/^https:\/\//i.test(v))v='https://'+v;
     const x=new URL(v);if(x.protocol!=='https:')return false;
     const h=x.hostname.toLowerCase(),pa=x.pathname;
@@ -112,76 +475,94 @@ function isMaps(u){
     return false;
   }catch(e){return false}
 }
-function fixUrl(u){u=String(u||'').trim();if(/^http:\/\//i.test(u))return u.replace(/^http:/i,'https:');return /^https:\/\//i.test(u)?u:'https://'+u}
-
-function renderNav(){
-  $('nav').innerHTML=SECTIONS.map(s=>{
-    if(!s.active)return `<div class="soon">${esc(s.name)} <small>em breve</small></div>`;
-    const cur=s.slug===curSec;let subs='';
-    if(cur&&s.cats)subs=s.cats.map(c=>`<li><a href="#" data-cat="${c.slug}" style="${c.slug===cat?'background:var(--erva-l);color:var(--erva);font-weight:600':''}">${esc(c.name)}</a></li>`).join('');
-    if(cur&&s.slug==='lugares'){
-      const chips=[{slug:'',name:'Todos'},...db.placeCats];
-      subs=chips.map(c=>`<li><a href="#" data-pcat="${c.slug}" style="${c.slug===pcat?'background:var(--erva-l);color:var(--erva);font-weight:600':''}">${esc(c.name)}</a></li>`).join('');
-    }
-    return `<div><a href="#" data-sec="${s.slug}" class="${cur?'on':''}">${esc(s.name)}</a><ul>${subs}</ul></div>`;
-  }).join('');
-  $('nav').querySelectorAll('[data-sec]').forEach(a=>a.onclick=e=>{e.preventDefault();const s=SECTIONS.find(x=>x.slug===a.dataset.sec);curSec=s.slug;if(s.cats)cat=s.cats[0].slug;render()});
-  $('nav').querySelectorAll('[data-cat]').forEach(a=>a.onclick=e=>{e.preventDefault();cat=a.dataset.cat;render()});
-  $('nav').querySelectorAll('[data-pcat]').forEach(a=>a.onclick=e=>{e.preventDefault();pcat=a.dataset.pcat;render()});
-}
-function render(){curSec==='lugares'?renderPlaces():renderCatalog()}
-function renderCatalog(){
-  renderNav();
-  const sec=SECTIONS.find(s=>s.slug===curSec);
-  const list=db.products.filter(p=>p.cat===cat).sort((a,b)=>(b.at||0)-(a.at||0));
-  const cname=sec.cats.find(c=>c.slug===cat).name;
-  $('main').innerHTML=`<div class="head"><h1>${esc(sec.name)}</h1></div>
-  <div class="tabs" role="tablist">${sec.cats.map(c=>`<button class="tab ${c.slug}" role="tab" aria-selected="${c.slug===cat}" data-cat="${c.slug}">${esc(c.name)}</button>`).join('')}</div>
-  ${list.length?`<div class="grid">${list.map(card).join('')}</div>`:`<div class="empty"><b>${curSec==='cafe'?`Nenhum café cadastrado em ${esc(cname)}`:`Nenhuma erva de ${esc(cname)} cadastrada`}</b></div>`}
-  <p class="note">Para cadastrar ou mudar algo, peça no chat do Claude — a página se atualiza sozinha.</p>`;
-  $('main').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{cat=t.dataset.cat;render()});
-}
-function card(p){
-  const c=db.companies.find(x=>x.id===p.companyId)||{name:'?'};
-  const o=[p.city,p.state,p.country].filter(Boolean).join(', ');
-  const rt=p.rating?`${starsHTML(20,p.rating)}<span>${fmt(p.rating)}</span>`:'<span class="none">sem nota</span>';
-  return `<article class="card ${p.cat}"><div class="ph">${p.photo?`<img src="${esc(p.photo)}" alt="${esc(c.name+' '+p.name)}" loading="lazy">`:'sem foto'}</div>
-  <div class="rt">${rt}</div>
-  <div class="cb"><div class="co">${esc(c.name)}</div><h3>${esc(p.name)}</h3>${p.size?`<div class="or"><b>${esc(p.size)}</b></div>`:''}<div class="or">${esc(o)||'Origem não informada'}</div>${p.desc?`<div class="ds">${esc(p.desc)}</div>`:''}</div></article>`;
-}
+function fixUrl(u){u=u.trim();if(/^http:\/\//i.test(u))return u.replace(/^http:/i,'https:');return /^https:\/\//i.test(u)?u:'https://'+u}
 function renderPlaces(){
   renderNav();
-  const list=db.places.filter(p=>!pcat||p.cat===pcat).sort((a,b)=>(b.at||0)-(a.at||0));
+  const list=db.places.filter(p=>!pcat||p.cat===pcat).sort((a,b)=>b.at-a.at);
   const chips=[{slug:'',name:'Todos'},...db.placeCats];
   const cn=chips.find(c=>c.slug===pcat);
-  $('main').innerHTML=`<div class="head"><h1>Lugares para Visitar</h1></div>
-  <div class="tabs" role="tablist">${chips.map(c=>`<button class="tab pl" role="tab" aria-selected="${c.slug===pcat}" data-pc="${c.slug}">${esc(c.name)}</button>`).join('')}</div>
-  ${list.length?`<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">${list.map(placeCard).join('')}</div>`:`<div class="empty"><b>Nenhum local cadastrado${pcat?' em '+esc(cn.name):''}</b></div>`}
-  <p class="note">Para cadastrar ou mudar algo, peça no chat do Claude — a página se atualiza sozinha.</p>`;
+  $('main').innerHTML=`<div class="head"><h1>Lugares para Visitar</h1><button class="btn" id="padd">Cadastrar local</button></div>
+  <div class="tabs" role="tablist" style="flex-wrap:wrap">${chips.map(c=>`<button class="tab pl" role="tab" aria-selected="${c.slug===pcat}" data-pc="${c.slug}">${esc(c.name)}</button>`).join('')}</div>
+  ${list.length?`<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">${list.map(placeCard).join('')}</div>`:`<div class="empty"><p><b>Nenhum local cadastrado${pcat?' em '+esc(cn.name):''}</b></p><button class="link" id="padd2">Cadastrar o primeiro</button></div>`}
+  <p class="note">As mudanças ficam salvas no seu Gist do GitHub e aparecem em qualquer navegador onde você entrar com o token.</p>`;
+  $('padd').onclick=()=>openPlace();const b2=$('padd2');if(b2)b2.onclick=()=>openPlace();
   $('main').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{pcat=t.dataset.pc;render()});
+  $('main').querySelectorAll('[data-pdel]').forEach(b=>b.onclick=async()=>{
+    if(!confirm('Excluir este local?'))return;
+    const id=b.dataset.pdel;
+    db.places=db.places.filter(p=>p.id!==id);
+    try{await persist()}catch(e){alert('Não foi possível salvar a exclusão: '+e.message)}
+    render();
+  });
 }
 function placeCard(p){
   const cname=(db.placeCats.find(c=>c.slug===p.cat)||{name:'?'}).name;
   const where=[p.city,p.state,p.country].filter(Boolean).join(', ');
   const link=isMaps(p.url)?`<a class="mapsbtn" href="${esc(fixUrl(p.url))}" target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a>`:'<span class="or">Link do mapa inválido</span>';
-  return `<article class="card pcard"><div class="ph">${p.photo?`<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">`:'sem foto'}</div>
-  <div class="cb"><span class="chip">${esc(cname)}</span><h3>${esc(p.name)}</h3>${where?`<div class="or">${esc(where)}</div>`:''}${p.notes?`<div class="ds">${esc(p.notes)}</div>`:''}${link}</div></article>`;
+  return `<article class="card pcard"><div class="ph">${photoSrc(p)?`<img src="${esc(photoSrc(p))}" alt="${esc(p.name)}" loading="lazy">`:'sem foto'}</div>
+  <div class="cb"><span class="chip">${esc(cname)}</span><h3>${esc(p.name)}</h3>${where?`<div class="or">${esc(where)}</div>`:''}${p.notes?`<div class="ds">${esc(p.notes)}</div>`:''}
+  ${link}<div class="ca"><button data-pdel="${p.id}" aria-label="Excluir ${esc(p.name)}">excluir</button></div></div></article>`;
 }
-
-async function loadData(silent){
+let pendingPlacePhoto=null;const NEWCAT='__new__';
+function fillSub(sel){
+  $('psub').innerHTML=db.placeCats.map(c=>`<option value="${c.slug}">${esc(c.name)}</option>`).join('')+`<option value="${NEWCAT}">+ Nova subdivisão...</option>`;
+  if(sel)$('psub').value=sel;$('pnew').hidden=$('psub').value!==NEWCAT;
+}
+function openPlace(){
+  ['pnome','pnew','purl','pcid','pest','pnotes'].forEach(i=>$(i).value='');$('ppais').value='Brasil';$('pfoto').value='';pendingPlacePhoto=null;
+  $('purlerr').hidden=true;$('pmsg').textContent='';fillSub(pcat||db.placeCats[0]?.slug);$('dlgP').showModal();$('pnome').focus();
+}
+$('psub').addEventListener('change',()=>{$('pnew').hidden=$('psub').value!==NEWCAT;if(!$('pnew').hidden)$('pnew').focus()});
+$('purl').addEventListener('blur',()=>{$('purlerr').hidden=!$('purl').value||isMaps($('purl').value)});
+$('pclose').onclick=()=>$('dlgP').close();
+$('dlgP').addEventListener('close',render);
+// cidades conhecidas: reaproveita as origens das ervas e dos locais já cadastrados
+function knownCities(){
+  const seen=new Map();
+  [...db.companies,...db.places].forEach(x=>{if(x.city){const k=norm(x.city)+'|'+norm(x.state||'')+'|'+norm(x.country||'');if(!seen.has(k))seen.set(k,{city:x.city,state:x.state||'',country:x.country||'Brasil'})}});
+  return [...seen.values()];
+}
+$('pcid').addEventListener('input',()=>{
+  const q=norm($('pcid').value),box=$('pcsug');
+  if(q.length<2){box.hidden=true;return}
+  const res=knownCities().filter(c=>norm(c.city).startsWith(q)||norm(c.city).includes(q)).slice(0,8);
+  box.innerHTML=res.map((c,i)=>`<li><button type="button" data-i="${i}">${esc(c.city)}<small>${esc([c.state,c.country].filter(Boolean).join(', '))}</small></button></li>`).join('');
+  box.hidden=!res.length;
+  box.querySelectorAll('button').forEach(b=>b.onmousedown=e=>{e.preventDefault();const c=res[b.dataset.i];$('pcid').value=c.city;$('pest').value=c.state;$('ppais').value=c.country;box.hidden=true});
+});
+$('pcid').addEventListener('blur',()=>setTimeout(()=>$('pcsug').hidden=true,150));
+$('pfoto').addEventListener('change',async e=>{
+  const f=e.target.files[0];pendingPlacePhoto=null;if(!f)return;
+  try{pendingPlacePhoto=await compressImage(f)}catch(err){}
+});
+$('pf').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const msg=$('pmsg');msg.className='msg err';
+  if(!isMaps($('purl').value)){$('purlerr').hidden=false;$('purl').focus();return}
+  $('psave').disabled=true;
   try{
-    const r=await fetch('data/db.json?t='+Date.now(),{cache:'no-store'});
-    if(!r.ok)throw new Error('sem dados ainda');
-    const d=await r.json();
-    db={companies:d.companies||[],products:d.products||[],places:d.places||[],placeCats:d.placeCats&&d.placeCats.length?d.placeCats:[{slug:'restaurantes',name:'Restaurantes'},{slug:'parques',name:'Parques'},{slug:'museus',name:'Museus'},{slug:'mirantes',name:'Mirantes'}]};
-    $('syncst').textContent='🔄 catálogo publicado — atualiza sozinho';
-    render();
-  }catch(e){
-    if(!silent){$('syncst').textContent='📭 catálogo ainda vazio';db={companies:[],products:[],places:[],placeCats:[{slug:'restaurantes',name:'Restaurantes'},{slug:'parques',name:'Parques'},{slug:'museus',name:'Museus'},{slug:'mirantes',name:'Mirantes'}]};render();}
+    let slug=$('psub').value;
+    if(slug===NEWCAT){
+      const label=$('pnew').value.trim();
+      if(!label){msg.textContent='Digite o nome da nova subdivisão.';$('pnew').focus();$('psave').disabled=false;return}
+      slug=norm(label).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||uid();
+      if(!db.placeCats.some(c=>c.slug===slug))db.placeCats=[...db.placeCats,{slug,name:label}];
+    }
+    const data={cat:slug,name:$('pnome').value.trim(),url:fixUrl($('purl').value),city:$('pcid').value.trim(),state:$('pest').value.trim(),country:$('ppais').value.trim(),notes:$('pnotes').value.trim()};
+    const blob=pendingPlacePhoto?pendingPlacePhoto.blob:null;
+    const photo=blob?pendingPlacePhoto.dataUrl:null;
+    db.places.push({id:uid(),...data,photo,at:Date.now()});
+    await persist();
+    pcat=slug;
+    msg.className='msg';msg.textContent=`Salvo: ${data.name}.`;
+    ['pnome','pnew','purl','pnotes'].forEach(i=>$(i).value='');$('pfoto').value='';pendingPlacePhoto=null;
+    fillSub(slug);$('pnome').focus();
+  }catch(err){
+    msg.textContent=err.message||'Não foi possível salvar. Tente de novo.';
+  }finally{
+    $('psave').disabled=false;
   }
-}
-loadData(false);
-setInterval(()=>loadData(true),20000);
+});
 </script>
 </body>
 </html>
